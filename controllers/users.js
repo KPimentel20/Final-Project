@@ -9,24 +9,18 @@ const s3 = new S3(); // initialize the construcotr
 module.exports = {
   signup,
   login,
+  createJWT
 };
 
-function signup(req, res) {
+async function signup(req, res) {
   console.log(req.body, req.file);
-
-  //////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////
-  //////////////////////////////////////////////////////////////////////////////////
-
-  // FilePath unique name to be saved to our butckt
   const filePath = `${uuidv4()}/${req.file.originalname}`;
   const params = {
     Bucket: process.env.BUCKET_NAME,
     Key: filePath,
     Body: req.file.buffer,
   };
-  //your bucket name goes where collectorcat is
-  //////////////////////////////////////////////////////////////////////////////////
+ 
   s3.upload(params, async function (err, data) {
     console.log(data, "from aws"); // data.Location is our photoUrl that exists on aws
     const user = new User({ ...req.body, photoUrl: data.Location });

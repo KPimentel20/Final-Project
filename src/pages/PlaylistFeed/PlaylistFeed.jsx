@@ -13,7 +13,7 @@ import { Grid } from "semantic-ui-react";
 
 export default function Playlist({user}) {
 console.log(playlistAPI, "<-- playlistsAPI")
-const [playlists, setPlaylists] = useState([];
+const [playlists, setPlaylists] = useState([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState("");
 
@@ -54,7 +54,7 @@ const [error, setError] = useState("");
 
  async function getPlaylists() {
   try {
-    const data = await playlistsAPI.getAll();
+    const data = await playlistAPI.getAll();
     console.log(data, " this is data ");
     setPlaylists([...data.playlists]);
     setLoading(false);
