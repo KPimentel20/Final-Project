@@ -8,13 +8,13 @@ const s3 = new S3(); // initialize the construcotr
 
 module.exports = {
   signup,
-  login,
-  createJWT
+  login
+  // createJWT
 };
 
 async function signup(req, res) {
   console.log(req.body, req.file);
-  const filePath = `${uuidv4()}/${req.file.originalname}`;
+  const filePath = `${uuidv4()}/${req.file.orginalname}`;
   const params = {
     Bucket: process.env.BUCKET_NAME,
     Key: filePath,

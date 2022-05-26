@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
-import { Button, Form, Header, Grid, Segment } from 'semantic-ui-react'
+import { Button, Form, Header, Grid, Image, Segment } from 'semantic-ui-react'
 import userService from "../../utils/userService";
 import { useNavigate } from "react-router-dom";
 
 export default function SignUpPage(props) {
 
   const navigate = useNavigate()
-
+  
   const [error, setError] = useState('')
   const [state, setState] = useState({
     username: '',
@@ -15,10 +15,16 @@ export default function SignUpPage(props) {
     password: '',
     passwordConf: ''
   })
+  
+  const [selectedFile, setSelectedFile] = useState('');
 
   async function handleSubmit(e){
     e.preventDefault()
-
+    const formData = new FormData();
+    formData.append('photo', selectedFile);
+    for (let fieldName in state){
+      formData.append(fieldName, state[fieldName])
+    }
     try {
       await userService.signup(state) 
       props.handleSignUpOrLogin();
@@ -38,11 +44,18 @@ export default function SignUpPage(props) {
     })
   }
 
+  function handleFileInput(e){
+    console.log(e.target.files);
+    setSelectedFile(e.target.files[0]);
+  }
+
 
   return (
     <Grid className="cool" textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header textAlign="center">Sign Up</Header>
+        <Header as="h2" color="#6f00ff" textAlign="center">
+        <Image src="https://t3.ftcdn.net/jpg/04/54/66/12/360_F_454661277_NtQYM8oJq2wOzY1X9Y81FlFa06DVipVD.jpg" /> musicMAKES
+        </Header>
         <Form autoComplete="off" onSubmit={handleSubmit}>
           <Segment stacked>
             <Form.Input
@@ -76,7 +89,15 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-            <Button type="submit" className="btn">Signup</Button>
+            <Form.Field>
+              <Form.Input
+                type="file"
+                name="photo"
+                placeholder="upload image"
+                onChange={handleFileInput}
+              />
+            </Form.Field>
+            <Button type="submit" color="orange" className="btn">Sign Up</Button>
           </Segment>
           {error ? <ErrorMessage error={error} /> : null}
         </Form>
