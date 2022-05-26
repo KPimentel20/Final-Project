@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import PageHeader from "../../components/Header/Header";
 import AddPlaylistForm from "../../components/AddPlaylistForm/AddPlaylistForm";
-import SongLibrary from "../components/SongLibrary/SongLibrary"
+import SongLibrary from "../../components/SongLibrary/SongLibrary"
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader"
 import * as playlistAPI from "../../utils/playlistApi";
@@ -73,7 +73,6 @@ const [error, setError] = useState("");
   if (error) {
     return (
       <>
-        <h1>There is an error</h1>
         <ErrorMessage error={error} />;
       </>
     );
