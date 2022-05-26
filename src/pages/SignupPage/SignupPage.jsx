@@ -40,7 +40,7 @@ export default function SignUpPage(props) {
 
 
   return (
-    <Grid textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
+    <Grid className="cool" textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
         <Header textAlign="center">Sign Up</Header>
         <Form autoComplete="off" onSubmit={handleSubmit}>
