@@ -14,10 +14,10 @@ async function create(req, res) {
             artist: req.body.artist
     })
         song = await song.populate('user')
-        res.status(201).json({song: song})
-    } catch (err){
+            res.status(201).json({song: song});
+    } catch (err) {
         console.log(err, "Error (create ctrl")
-        res.status(400).json({err})
+            res.status(400).json({err})
 }
 
 async function removeSong(req, res) {
@@ -25,7 +25,7 @@ async function removeSong(req, res) {
       console.log(req.params.songId, "<--- Song to be deleted")
       const deleted = await Song.deleteOne({_id: req.params.songId})
         res.status(200).json(deleted);
-    }catch(err){
+    } catch (err) {
         res.status(400).json({err})
     }
     } 
