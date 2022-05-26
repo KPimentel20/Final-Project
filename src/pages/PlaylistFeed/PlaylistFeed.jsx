@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import PageHeader from "../../components/Header/Header";
 import AddPlaylistForm from "../../components/AddPlaylistForm/AddPlaylistForm";
+import PlaylistFeed from "../components/PlaylistFeed/PlaylistFeed"
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import * as playlistAPI from "../../utils/playlistApi";
 import * as songAPI from '../../utils/songApi';
 
-import { Grid, Header } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
+
 
 export default function Playlist({user}) {
 console.log(playlistAPI, "<-- playlistsAPI")
@@ -73,17 +76,19 @@ const [error, setError] = useState("");
 
   return (
     <Grid centered>
-        <Header>
-            Hello
-        </Header>
-      <Grid.Row>
+        <Grid.Row>
+            <Grid.Column>
+                <PageHeader />
+            </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
           <AddPlaylistForm handleAddPlaylist={handleAddPlaylist} />
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <Playlist
+          <PlaylistFeed 
             songs={playlists}
             addSong={addSong}
             removeSong={removeSong}

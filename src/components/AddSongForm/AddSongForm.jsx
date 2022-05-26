@@ -51,7 +51,7 @@ return (
                 type="submit"
                 className="btn"
             >
-                SONGS
+                ADD SONG
             </Button>
             </Form>
           </Segment>
