@@ -3,6 +3,8 @@ const router = express.Router();
 const playlistsCtrl = require('../../controllers/playlists');
 
 router.post('/songs/:id/playlists', playlistsCtrl.create)
-router.delete('/playlists/:id', playlistsCtrl.deletePlaylist)
+router.delete('/playlists/:id', playlistsCtrl.removePlaylist)
+router.get('/platlists', playlistsCtrl.index)
+router.post('/playlists', playlistsCtrl.update)
 
 module.exports = router;

@@ -1,9 +1,7 @@
 import React from "react";
 import { Card, Icon } from "semantic-ui-react";
-import playlist from "../../../models/playlist";
-import song from "../../../models/song";
    
-function SongCard({addSong, removeSong, user})   {
+function SongCard({addSong, removeSong, playlist, song, user})   {
     const songIndex = playlist.songs.findIndex(
         (song) => song.username === user.username
       ); 

@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
-
 import AddPlaylistForm from "../../components/AddPlaylistForm/AddPlaylistForm";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import * as playlistAPI from "../../utils/playlistApi";
 import * as songAPI from '../../utils/songApi';
 
-import { Grid } from "semantic-ui-react";
+import { Grid, Header } from "semantic-ui-react";
 
 export default function Playlist({user}) {
 console.log(playlistAPI, "<-- playlistsAPI")
@@ -66,6 +65,7 @@ const [error, setError] = useState("");
   if (error) {
     return (
       <>
+        <h1>There is an error</h1>
         <ErrorMessage error={error} />;
       </>
     );
@@ -73,6 +73,9 @@ const [error, setError] = useState("");
 
   return (
     <Grid centered>
+        <Header>
+            Hello
+        </Header>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
           <AddPlaylistForm handleAddPlaylist={handleAddPlaylist} />

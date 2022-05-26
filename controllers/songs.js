@@ -2,8 +2,6 @@ const Song = require('../models/song');
 
 module.exports = {
     create,
-    songsIndex,
-    updateSong,
     removeSong
 }
 
@@ -21,29 +19,6 @@ async function create(req, res) {
         console.log(err, "Error (create ctrl")
         res.status(400).json({err})
 }
-async function songsIndex(req, res){
-    try {
-        const songs = await Song.find({user: req.user._id});
-        res.status(200).json({songs})
-    } catch(err){
-        res.status(400).json({err})
-    }
-}
-async function updateSong(req, res){
-    try {
-        let updatedSong = await Song.findByIdAndUpdate(
-            req.body._id, {
-                user: req.user,
-                title: req.body.title,
-                song: req.body.song,
-                artist: req.body.artist
-    }).exec()
-        res.status(201).json(updatedSong)
-    } catch(err){
-        console.log(err, "Error (update ctrl)")
-        res.status(400).json({err})
-    }
-}
 
 async function removeSong(req, res) {
     try {
@@ -53,4 +28,4 @@ async function removeSong(req, res) {
     }catch(err){
         res.status(400).json({err})
     }
-}
+} 
