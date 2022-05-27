@@ -1,17 +1,17 @@
-const Song = require('../models/song');
+const Song = require('../models/playlist');
 
 module.exports = {
-    create,
-    removeSong
+    create
 }
+//     removeSong
+
 
 async function create(req, res) {
     try { 
         let song = await Song.create({
-            user: req.user,
+            user: req.user._id,
             title: req.body.title,
-            song: req.body.song,
-            artist: req.body.artist
+            songUrl: req.body.song
     })
         song = await song.populate('user')
             res.status(201).json({song: song});
@@ -19,14 +19,4 @@ async function create(req, res) {
         console.log(err, "Error (create ctrl")
             res.status(400).json({err})
 }
-
-async function removeSong(req, res) {
-    try {
-      console.log(req.params.songId, "<--- Song to be deleted")
-      const deleted = await Song.deleteOne({_id: req.params.songId})
-        res.status(200).json(deleted);
-    } catch (err) {
-        res.status(400).json({err})
-    }
-    } 
 }

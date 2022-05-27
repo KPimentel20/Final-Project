@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import PageHeader from "../../components/Header/Header";
 import AddPlaylistForm from "../../components/AddPlaylistForm/AddPlaylistForm";
-import SongLibrary from "../../components/SongLibrary/SongLibrary"
+// import SongLibrary from "../../components/SongLibrary/SongLibrary"
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader"
 import * as playlistAPI from "../../utils/playlistApi";
@@ -12,7 +12,6 @@ import { Grid } from "semantic-ui-react";
 
 
 export default function Playlist({user}) {
-console.log(playlistAPI, "<-- playlistsAPI")
 const [playlists, setPlaylists] = useState([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState("");
@@ -54,12 +53,12 @@ const [error, setError] = useState("");
 
  async function getPlaylists() {
   try {
-    const data = await playlistAPI.getAll();
+    const data = await playlistAPI.getAll(user._id);
     console.log(data, " this is data ");
     setPlaylists([...data.playlists]);
     setLoading(false);
   } catch (err) {
-    console.log(err.message, "this is the error");
+    console.log(err);
     setError(err.message);
   }
 }
@@ -87,7 +86,14 @@ const [error, setError] = useState("");
       </>
     );
   }
-
+  const list = playlists.map((playlist, index) => {
+    console.log(playlist)
+    return (
+        <div key={index}>
+        {playlist.artist} {playlist.album} {playlist.song}
+        </div>
+    )
+})
   return (
     <Grid centered>
         <Grid.Row>
@@ -102,14 +108,7 @@ const [error, setError] = useState("");
       </Grid.Row>
       <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
-          <SongLibrary
-            songs={playlists}
-            numPhotosCol={1}
-            loading={loading}
-            addSong={addSong}
-            removeSong={removeSong}
-            user={user}
-          />
+        {list}
         </Grid.Column>
       </Grid.Row>
     </Grid>

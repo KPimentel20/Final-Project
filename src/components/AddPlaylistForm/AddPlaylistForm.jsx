@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Button, Card, Segment, Form, Image } from 'semantic-ui-react'
+import { Button,  Grid, Segment, Form } from 'semantic-ui-react'
+import * as playlistAPI from "../../utils/playlistApi"
+import { useNavigate } from "react-router-dom";
 
-
-export default function AddPlaylistForm({songs, playlist, addPlaylist, removePlaylist, numPhotosCol, addSong, removeSong, user }){
-  const [selectedFile, setSelectedFile] = useState('')
+export default function AddPlaylistForm({ user }){
   const [state, setState] = useState({
-    title: ''
+    artist: '',
+    album: ''
   })
 
-  function handleFileInput(e){
-    setSelectedFile(e.target.files[0])
-  }
+  const navigate = useNavigate()
+
 
   function handleChange(e){
     setState({
@@ -19,40 +19,37 @@ export default function AddPlaylistForm({songs, playlist, addPlaylist, removePla
     })
   }
 
-  function handleSubmit(e){
+  async function handleSubmit(e){
     e.preventDefault()
-             
-    const formData = new FormData()
-    formData.append('playlist', selectedFile)
-    formData.append('album', state.title) 
-    songs.handleAddPlaylist(formData);
+    console.log(state)
+    await playlistAPI.create(state);
+    navigate("/playlist");
   }
 
     return (
-        <Card.Group itemsPerRow={numPhotosCol} stackable>
-          <Segment>
-            <Image src="https://react.semantic-ui.com/images/wireframe/short-paragraph.png" />
-          </Segment>
-      
-          return (
+            <Grid >
+            <Grid.Row>
             <Segment>
-            <Form  autoComplete="off" onSubmit={handleSubmit}>
+            <Form  autoComplete="off" onSubmit={handleSubmit}>  
+            <label>Album</label> 
               <Form.Input
-                song={songs}
-                addSong={addSong}
-                removeSong={removeSong}
-                user={user}
-                onChange={handleChange}
-                required
-              />   
-              <Form.Input
-              playlist={playlist}
-              addPlaylist={addPlaylist}
-              removePlaylist={removePlaylist}
-              user={user}
-              onChange={handleFileInput}
+              name="album"
+              onChange={handleChange} value={state.album}
+              placeholder= "Enter the album name here"
               required
-            />  
+            /> <label>Artist</label> 
+            <Form.Input
+              name="artist"
+              onChange={handleChange} value={state.artist}
+              placeholder= "Enter the artist name here"
+              required
+            />  <label>Song</label>
+            <Form.Input
+              name="song"
+              onChange={handleChange} value={state.song}
+              placeholder= "Enter the name of the song here"
+              required
+            /> 
               <Button
                 type="submit"
                 className="btn"
@@ -61,11 +58,9 @@ export default function AddPlaylistForm({songs, playlist, addPlaylist, removePla
               </Button>
             </Form>
           </Segment>
+          </Grid.Row>
+          </Grid>
           );
-        )
-      </Card.Group>
-  
-    )
 }
 
 

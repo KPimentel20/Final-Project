@@ -16,26 +16,19 @@ export default function SignUpPage(props) {
     passwordConf: ''
   })
   
-  const [selectedFile, setSelectedFile] = useState('');
+  async function handleSubmit(e) {
+    e.preventDefault();
 
-  async function handleSubmit(e){
-    e.preventDefault()
-    const formData = new FormData();
-    formData.append('photo', selectedFile);
-    for (let fieldName in state){
-      formData.append(fieldName, state[fieldName])
-    }
     try {
-      await userService.signup(state) 
+      await userService.signup(state);
       props.handleSignUpOrLogin();
-      navigate('/')
-
-    } catch(err){
-      console.log(err.message);
-      setError(err.message)
+      navigate("/");
+    } catch (err) {
+      setError(err.message);
     }
-
   }
+
+  
 
   function handleChange(e){
     setState({
@@ -44,16 +37,12 @@ export default function SignUpPage(props) {
     })
   }
 
-  function handleFileInput(e){
-    console.log(e.target.files);
-    setSelectedFile(e.target.files[0]);
-  }
 
 
   return (
     <Grid className="cool" textAlign="center" style={{ height: "100vh" }} verticalAlign="middle">
       <Grid.Column style={{ maxWidth: 450 }}>
-        <Header as="h2" color="#6f00ff" textAlign="center">
+        <Header as="h2" textAlign="center">
         <Image src="https://t3.ftcdn.net/jpg/04/54/66/12/360_F_454661277_NtQYM8oJq2wOzY1X9Y81FlFa06DVipVD.jpg" /> musicMAKES
         </Header>
         <Form autoComplete="off" onSubmit={handleSubmit}>
@@ -89,14 +78,6 @@ export default function SignUpPage(props) {
               onChange={handleChange}
               required
             />
-            <Form.Field>
-              <Form.Input
-                type="file"
-                name="photo"
-                placeholder="upload image"
-                onChange={handleFileInput}
-              />
-            </Form.Field>
             <Button type="submit" color="orange" className="btn">Sign Up</Button>
           </Segment>
           {error ? <ErrorMessage error={error} /> : null}

@@ -1,13 +1,15 @@
 import tokenService from './tokenService';
 
-const BASE_URL = '/api/playlists';
+const BASE_URL = '/api/playlists/';
 
 export function create(playlist) {
     return fetch(BASE_URL, {
       method: 'POST',
-      body: playlist,
+      body: JSON.stringify(playlist),
       headers: {
-        'Authorization': 'Bearer ' + tokenService.getToken()
+        'Authorization': 'Bearer ' + tokenService.getToken(),
+         "Content-Type": "application/json",
+
       }
     
     }).then(res => {
@@ -16,11 +18,12 @@ export function create(playlist) {
     })
   }
 
-  export function getAll() {
+  export function getAll(id) {
     return fetch(BASE_URL, {
-      headers: {
-        'Authorization': 'Bearer ' + tokenService.getToken()
-      }
+        method: 'GET'
+    //   headers: {
+    //     'Authorization': 'Bearer ' + tokenService.getToken()
+    //   }
     })
     .then(res => {
       if(res.ok) return res.json();

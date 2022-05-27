@@ -6,8 +6,8 @@ const upload = multer(); // <- handles multipart/formdata requests(photos)
 // /*---------- Public Routes ----------*/
 // /*---------- Public Routes ----------*/
 router.post('/', upload.single('song'), songsCtrl.create);
-router.delete('/', songsCtrl.removeSong);
-router.get('/', songsCtrl.index)
+// router.delete('/', songsCtrl.removeSong);
+// router.get('/', songsCtrl.index)
 
 
 /*---------- Protected Routes ----------*/

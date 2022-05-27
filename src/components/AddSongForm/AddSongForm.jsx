@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Button, Segment, Form } from 'semantic-ui-react'
+import { Button, Segment, Form, Grid} from 'semantic-ui-react';
+import { useNavigate } from "react-router-dom";
+import * as songAPI from "../../utils/songApi"
 
-
-export default function AddSongForm({songs, playlist, addSong, removeSong, numPhotosCol, user }){
-  const [selectedFile, setSelectedFile] = useState('')
+export default function AddSongForm({ user }){
   const [state, setState] = useState({
-    title: ''
+    title: '',
+    songUrl: ''
   })
-
-  function handleFileInput(e){
-    setSelectedFile(e.target.files[0])
-  }
+  const navigate = useNavigate()
+  
 
   function handleChange(e){
     setState({
@@ -18,47 +17,44 @@ export default function AddSongForm({songs, playlist, addSong, removeSong, numPh
       [e.target.name]: e.target.value
     })
   }
-
-  function handleSubmit(e){
+  async function handleSubmit(e){
     e.preventDefault()
-             
-    const formData = new FormData()
-    formData.append('song', selectedFile)
-    formData.append('album', state.title) 
-    playlist.handleAddSong(formData);
+    console.log(state)
+    await songAPI.create(state);
+    navigate("/song");
   }
       
-return (
-    <Segment>
-        <Form  autoComplete="off" onSubmit={handleSubmit}>
-            <Form.Input
-                song={songs}
-                addSong={addSong}
-                removeSong={removeSong}
-                user={user}
-                onChange={handleChange}
-                required
-              />   
-            <Form.Input
-              playlist={playlist}
-              addSong={addSong}
-              removeSong={removeSong}
-              user={user}
-              onChange={handleFileInput}
-              required
-            />  
-            <Button
-                type="submit"
-                className="btn"
-            >
-                ADD SONG
-            </Button>
-            </Form>
-          </Segment>
-          );
-
-        }
-
+  return (
+      <Grid>
+      <Grid.Row>
+      <Segment>
+      <Form  autoComplete="off" onSubmit={handleSubmit}>  
+      <label>Title</label> 
+      <Form.Input
+        name="Title"
+        onChange={handleChange} value={state.title}
+        placeholder= "Enter the album name here"
+        required
+        /> 
+      <label>Song URL</label> 
+      <Form.Input
+        name="songUrl"
+        onChange={handleChange} value={state.songUrl}
+        placeholder= "Enter the artist name here"
+        required
+        /> 
+      <Button
+        type="submit"
+        className="btn"
+      >
+        ADD SONG
+      </Button>
+      </Form>
+      </Segment>
+    </Grid.Row>
+    </Grid>
+  );
+}
 
 
 
