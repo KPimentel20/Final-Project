@@ -30,21 +30,6 @@ async function index(req, res){
         res.status(400).json(err)
     }
 }
-// async function update(req, res){
-//     try {
-//         let updatedPlaylist = await Playlist.findByIdAndUpdate(
-//             req.body._id, {
-//                 user: req.user,
-//                 title: req.body.title,
-//                 song: req.body.song,
-//                 artist: req.body.artist
-//     }).exec()
-//         res.status(201).json(updatedPlaylist)
-//     } catch(err){
-//         console.log(err, "Error (update ctrl)")
-//         res.status(400).json({err})
-//     }
-// }
 
 async function removePlaylist(req, res) {
     try {

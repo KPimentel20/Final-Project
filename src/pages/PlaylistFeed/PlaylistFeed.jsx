@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-
+import "./PlaylistFeed.css";
 import PageHeader from "../../components/Header/Header";
 import AddPlaylistForm from "../../components/AddPlaylistForm/AddPlaylistForm";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
@@ -8,7 +8,7 @@ import * as playlistAPI from "../../utils/playlistApi";
 
 import { Grid, Input, Button } from "semantic-ui-react";
 
-export default function Playlist({user}) {
+export default function Playlist({user, handleLogout}) {
 const [playlists, setPlaylists] = useState([]);
 const [loading, setLoading] = useState(true);
 const [error, setError] = useState("");
@@ -59,7 +59,7 @@ async function handleDeletePlaylist(playlist) {
   if (error) {
     return (
       <>
-        <PageHeader />
+        <PageHeader handleLogout={handleLogout} user={user} />
         <ErrorMessage error={error} />;
       </>
     );
@@ -85,13 +85,13 @@ async function handleDeletePlaylist(playlist) {
     <Grid centered>
         <Grid.Row>
             <Grid.Column>
-                <PageHeader />
+                <PageHeader style={{backgroundColor:'black',}} handleLogout={handleLogout} user={user}/>
             </Grid.Column>
         </Grid.Row>
         <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
           <AddPlaylistForm handleAddPlaylist={handleAddPlaylist} />
-          <Button type="submit" className="btn">
+          <Button type="submit" class="button-85" className="btn">
         <Input type="button" handleDeletePlaylist={handleDeletePlaylist}> DELETE PLAYLIST </Input>
       </Button>
         </Grid.Column>

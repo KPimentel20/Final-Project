@@ -15,11 +15,24 @@ function App() {
     setUser(userService.getUser())
   }
 
+  function handleLogout() {
+    userService.logout();
+    setUser(null);
+  }
+
+  if(user) {
     return (
       <Routes>
+        <Route path="/" element={<Playlist user={user} handleLogout={handleLogout} /> } />
         <Route path="/song" element={<AddSongForm user={user} /> } />
-        <Route path="/" element={<Playlist user={user} /> } />
         <Route path="/playlist" element={<AddPlaylistForm user={user} />} />
+        <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
+        <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
+      </Routes>
+    );
+  }
+    return (
+      <Routes>
         <Route path="/login" element={<LoginPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
         <Route path="/signup" element={<SignupPage handleSignUpOrLogin={handleSignUpOrLogin} />} />
       </Routes>

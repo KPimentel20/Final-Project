@@ -51,6 +51,7 @@ export default function AddPlaylistForm({ user }){
               required
             /> 
               <Button
+                class="button-85"
                 type="submit"
                 className="btn"
               >

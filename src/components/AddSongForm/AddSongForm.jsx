@@ -23,14 +23,7 @@ export default function AddSongForm({ user }){
     await songAPI.create(state);
     navigate("/song");
   }
-//   const songs = songs.map((song, index) => {
-//     console.log(song)
-//     return (
-//         <div key={index}>
-//         {song.title} {song.songUrl}
-//         </div>
-//     )
-// })
+
   return (
       <Grid centered>
       <Grid.Row>
@@ -51,6 +44,7 @@ export default function AddSongForm({ user }){
         required
         /> 
       <Button
+        class="button-85"
         type="submit"
         className="btn"
       >

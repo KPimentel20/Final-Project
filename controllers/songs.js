@@ -3,7 +3,6 @@ const Song = require('../models/playlist');
 module.exports = {
     create
 }
-//     removeSong
 
 
 async function create(req, res) {
