@@ -18,9 +18,9 @@ function SongCard({addSong, removeSong, playlist, song, user})   {
         <Card key={playlist._id} raised>
           <Card.Content>
             <Card.Description>
-                {song.title}
                 {song.artist}
-                {song.playlist}
+                {song.album}
+                {song.song}
             </Card.Description>
           </Card.Content>
           <Card.Content extra textAlign={"right"}>

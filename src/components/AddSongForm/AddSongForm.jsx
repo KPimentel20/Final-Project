@@ -23,24 +23,31 @@ export default function AddSongForm({ user }){
     await songAPI.create(state);
     navigate("/song");
   }
-      
+//   const songs = songs.map((song, index) => {
+//     console.log(song)
+//     return (
+//         <div key={index}>
+//         {song.title} {song.songUrl}
+//         </div>
+//     )
+// })
   return (
-      <Grid>
+      <Grid centered>
       <Grid.Row>
       <Segment>
       <Form  autoComplete="off" onSubmit={handleSubmit}>  
       <label>Title</label> 
       <Form.Input
-        name="Title"
+        name="title"
         onChange={handleChange} value={state.title}
-        placeholder= "Enter the album name here"
+        placeholder= "Enter the song title here"
         required
         /> 
       <label>Song URL</label> 
       <Form.Input
         name="songUrl"
         onChange={handleChange} value={state.songUrl}
-        placeholder= "Enter the artist name here"
+        placeholder= "Enter the song URL here"
         required
         /> 
       <Button
@@ -51,6 +58,7 @@ export default function AddSongForm({ user }){
       </Button>
       </Form>
       </Segment>
+        {/* {songs} */}
     </Grid.Row>
     </Grid>
   );

@@ -18,6 +18,23 @@ export function create(playlist) {
     })
   }
 
+  export function deletePlaylist(playlist) {
+    return fetch(BASE_URL, {
+      method: 'DELETE',
+      body: JSON.stringify(playlist),
+      headers: {
+        'Authorization': 'Bearer ' + tokenService.getToken(),
+         "Content-Type": "application/json",
+
+      }
+    
+    }).then(res => {
+      if(res.ok) return res.json();
+      throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
+    })
+  }
+
+
   export function getAll(id) {
     return fetch(BASE_URL, {
         method: 'GET'
@@ -30,3 +47,4 @@ export function create(playlist) {
       throw new Error('Bad Credentials! CHECK THE SERVER TERMINAL!')
     })
   }
+
