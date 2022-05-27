@@ -1,5 +1,6 @@
 App Title: musicMAKES
 
+Purpose: The purpose of musicMAKES was to create a space where people can have access to other people's playlists and share music with one another. It's modeled after Spotify in a way where users can create their own playlist based off of what they normally like listening to. I really wanted to implement a third party API to allow users to learn a lot more about the artist and song they are listening to like for example, the lyrics, or the meaning behind an album, or an artists background. musicMAKES is still a work in progress but for now it features basic create, read, and delete functionality for playlists. 
 
 Screenshots:
 
@@ -12,17 +13,17 @@ Screenshots:
 <img width="988" alt="Screen Shot 2022-05-27 at 2 40 12 AM" src="https://user-images.githubusercontent.com/101133073/170754646-78f5eea8-3572-45fc-98a6-3323d1376667.png">
 <img width="1091" alt="Screen Shot 2022-05-27 at 2 39 59 AM" src="https://user-images.githubusercontent.com/101133073/170754857-cf083774-107f-4be1-8f76-43e028ef4315.png">
 
-
-
-
-
-
-
 Technologies Used:
 * Mongo DB/Mongoose
 * Express
 * React
 * Node
+* Trello
+* Figma
+* Lucid
+* Heroku
+* JavaScript
+* HTML5
 
 Getting Started:
 https://musicmakes.herokuapp.com/
