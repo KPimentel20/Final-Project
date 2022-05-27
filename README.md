@@ -40,3 +40,6 @@ Next Steps:
 * Add a musicgenre Model
 * Add how long the songs are using a 3rd party API
 * I want viewers to see a variety of music and/or artists to listen to based on their own music interests
+
+Takeaways:
+Prioritize your health. I had strep and was very close to having walking pnuemonia for almost two weeks. I'm finally feeling a better but its incredibly hard to learn how to implement an API or even do the project when you dont feel well physically. I really want to revisit this and work on it when I'm not sick. I also should have focused more on meeting MVP before trying to make a 3rd party API work because I got really carried away with that and lost time. I cant really tell if I like or dont like using these technologies, I've been too sick to really understand whether or not im enjoying the tools or not. I felt like I really just needed to just do this and i did not really get the luxury of knowing if i enjoyed it. i was pretty miserable these past few days due to my physical state of being.
