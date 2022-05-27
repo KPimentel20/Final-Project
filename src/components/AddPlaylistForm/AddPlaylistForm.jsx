@@ -27,7 +27,7 @@ export default function AddPlaylistForm({ user }){
   }
 
     return (
-            <Grid >
+            <Grid centered>
             <Grid.Row>
             <Segment>
             <Form  autoComplete="off" onSubmit={handleSubmit}>  
@@ -50,7 +50,7 @@ export default function AddPlaylistForm({ user }){
               placeholder= "Enter the name of the song here"
               required
             /> 
-              <Button
+              <Button 
                 class="button-85"
                 type="submit"
                 className="btn"

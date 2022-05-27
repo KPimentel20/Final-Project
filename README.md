@@ -1,37 +1,20 @@
-## Setup 
+App Title: musicMAKES
 
-1. Clone the repo
-2. Rename the folder to your Project, you can use the `mv` command like `mv mern-boilerplate yourprojectname`
-3. Delete the `.git` file, when you are in the root of the file, you can press `ls` and you should see a `.git` file, then go ahead and run `rm -rf .git`
+Technologies Used:
+* Mongo DB/Mongoose
+* Express
+* React
+* Node
 
+Getting Started:
+https://musicmakes.herokuapp.com/
 
-#### Setup your git repo
+https://trello.com/invite/b/3rjUdPJY/fb8058909d39d0bd303e547e336751f8/musicmakes-project-4 Trello
 
-1. go to github and create your github and create a repo (Without a readme or liscense you can add that later!)
-2. Then you can run the following commands in the root of your project 
+https://www.figma.com/file/VpDr1hIXcyLfdFZftkxiWa/Taco-Truck-Low-Fi-Wireframing-(Community)?node-id=13%3A2 Wireframe
 
-```
-git init
-git add .
-git commit -m "first commit"
-git remote add origin git@git.generalassemb.ly:SEI-CC/test.git // this will be whatever your address will be, look at the address in the code github gives you!
-git push -u origin main
-```
+https://lucid.app/lucidchart/0cf7448f-78c1-4589-9e73-149390da3ada/edit?invitationId=inv_c8a45f09-deb9-49bb-a587-5722e044da9d ERD’s
 
-#### Setup the App
-
-```npm install```
-
-*DOTENV*
-
-`touch .env`
-
-add your variables
-
-```
-DATABASE_URL=mongodb://localhost:27017/testagramV2
-BUCKET_NAME=catcollectorone
-SECRET=mysecretforjwt
-```
-
-The app is configured, to use those respective key names for the database, jwt secret and aws bucket, of course you'll have your own values
+Next Steps:
+* Consume data from a third party API (like Spotify)
+* 
