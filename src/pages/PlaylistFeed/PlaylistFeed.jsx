@@ -6,7 +6,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Loading from "../../components/Loader/Loader"
 import * as playlistAPI from "../../utils/playlistApi";
 
-import { Grid, Input, Button } from "semantic-ui-react";
+import { Grid } from "semantic-ui-react";
 
 export default function Playlist({user, handleLogout}) {
 const [playlists, setPlaylists] = useState([]);
@@ -27,12 +27,14 @@ const [error, setError] = useState("");
   }
 }
 
-async function handleDeletePlaylist(playlist) {
+async function handleDeletePlaylist(e) {
   try {
+const playlistId = e.target.id
+console.log(playlistId)
     setLoading(true);
-    const data = await playlistAPI.deletePlaylist(playlist);
-    console.log(data)
-    setPlaylists([data.playlist, ...playlist]);
+    const data = await playlistAPI.deletePlaylist(playlistId);
+    const playlistArray = await playlists.filter(playlist => playlist._id !== playlistId);
+            setPlaylists(playlistArray);
     setLoading(false);
   } catch (err) {
     console.log(err);
@@ -59,7 +61,7 @@ async function handleDeletePlaylist(playlist) {
   if (error) {
     return (
       <>
-        <PageHeader handleLogout={handleLogout} user={user} />
+        <PageHeader onClick={handleLogout} user={user} />
         <ErrorMessage error={error} />;
       </>
     );
@@ -77,6 +79,7 @@ async function handleDeletePlaylist(playlist) {
     return (
         <div key={index}>
         {playlist.artist} {playlist.album} {playlist.song}
+        <input type="submit" id={playlist._id} value="DELETE PLAYLIST" onClick={handleDeletePlaylist}  /> 
         </div>
     )
 })
@@ -91,9 +94,6 @@ async function handleDeletePlaylist(playlist) {
         <Grid.Row>
         <Grid.Column style={{ maxWidth: 450 }}>
           <AddPlaylistForm handleAddPlaylist={handleAddPlaylist} />
-          <Button type="submit" class="button-85" className="btn">
-        <Input type="button" handleDeletePlaylist={handleDeletePlaylist}> DELETE PLAYLIST </Input>
-      </Button>
         </Grid.Column>
       </Grid.Row>
       <Grid.Row>

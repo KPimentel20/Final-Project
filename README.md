@@ -17,4 +17,7 @@ https://lucid.app/lucidchart/0cf7448f-78c1-4589-9e73-149390da3ada/edit?invitatio
 
 Next Steps:
 * Consume data from a third party API (like Spotify)
-* 
+* Make it responsive to mobile devices
+* Add a musicgenre Model
+* Add how long the songs are using a 3rd party API
+* I want viewers to see a variety of music and/or artists to listen to based on their own music interests
